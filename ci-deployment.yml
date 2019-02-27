@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Deployment pipeline for AIS shiny deployment Service
+Description: Deployment pipeline for Eagle deployment Service
 Parameters:
   Stage:
     Type: String
