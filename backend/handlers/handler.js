@@ -1,7 +1,7 @@
 'use strict';
 
 const handler = () => {
-  console.log('BLAWDOKAWD');
+  console.log('BLAWDOK');
   console.log('awd')
   return [
     {

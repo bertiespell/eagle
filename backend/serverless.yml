@@ -38,7 +38,7 @@ custom:
         name: getBlogs
         description: 'Get List of Blogs'
         config:
-          lambdaFunctionArn: arn:aws:lambda:eu-west-1:306258778049:function:blog-dev-getBlogs
+          lambdaFunctionArn: arn:aws:lambda:eu-west-1:${AWS::AccountId}:function:blog-dev-getBlogs
           serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
 # you can add CloudFormation resource templates here
