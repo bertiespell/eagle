@@ -13,7 +13,7 @@ provider:
 # LAMBDAs
 functions:
   getBlogs:
-    handler: var/task/handlers/getBlogs.handler
+    handler: handlers/get-blogs.handler
 
 custom:
   accountId:
