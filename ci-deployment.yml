@@ -233,4 +233,5 @@ Resources:
                   - cognito-idp:*
                   - cognito-identity:*
                   - cognito-sync:*
+                  - appsync:*
                 Resource: "*"
