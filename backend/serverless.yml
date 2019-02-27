@@ -22,7 +22,7 @@ custom:
     name: blog-appsync-api
     authenticationType: AMAZON_COGNITO_USER_POOLS
     userPoolConfig:
-      awsRegion:  eu-west-1
+      awsRegion: eu-west-1
       defaultAction: ALLOW
       userPoolId:  { Ref: CognitoUserPool } 
     mappingTemplates:
@@ -40,10 +40,10 @@ custom:
         config:
           lambdaFunctionArn:
             Fn::Join:
-              - ':'
-              - - "arn:aws:iam:lambda:eu-west-1"
+              - ''
+              - - "arn:aws:lambda:eu-west-1:"
                 - Ref: AWS::AccountId
-                - function:blog-dev-getBlogs
+                - :function:blog-dev-getBlogs
 
           serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
