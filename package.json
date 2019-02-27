@@ -1,0 +1,11 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.404.0",
+    "serverless-appsync-plugin": "^1.0.9",
+    "serverless-pseudo-parameters": "^2.4.0"
+  }
+}

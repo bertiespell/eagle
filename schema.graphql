@@ -1,0 +1,15 @@
+schema {
+    query: Query
+}
+
+type Query {
+    getBlogs: [Blog] 
+}
+
+type Blog {
+    title: String!
+    content: String!
+    createdAt: String!
+    imageUrl: String
+}
+
