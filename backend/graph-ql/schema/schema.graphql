@@ -1,0 +1,21 @@
+type File {
+	userID: String!
+	content: String!
+}
+
+input FileInput {
+	content: String!
+}
+
+type Mutation {
+	create(file: FileInput): File
+}
+
+type Query {
+	getBlogs: [File]
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+}

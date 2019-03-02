@@ -1,0 +1,11 @@
+- dataSource: getBlogs
+  type: Query
+  field: getBlogs
+  request: "default-lambda-request.vtl"
+  response: "default-lambda-response.vtl"
+
+- dataSource: create
+  type: Mutation
+  field: create
+  request: "default-lambda-request.vtl"
+  response: "default-lambda-response.vtl"

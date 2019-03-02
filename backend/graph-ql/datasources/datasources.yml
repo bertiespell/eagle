@@ -1,0 +1,24 @@
+- type: AWS_LAMBDA
+  name: getBlogs
+  description: 'Get List of Blogs'
+  config:
+    lambdaFunctionArn:
+      Fn::Join:
+        - ''
+        - - "arn:aws:lambda:eu-west-1:"
+          - Ref: AWS::AccountId
+          - :function:eagle-dev-getBlogs
+
+    serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
+- type: AWS_LAMBDA
+  name: create
+  description: 'create new item'
+  config:
+    lambdaFunctionArn:
+      Fn::Join:
+        - ''
+        - - "arn:aws:lambda:eu-west-1:"
+          - Ref: AWS::AccountId
+          - :function:eagle-dev-create
+
+    serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }

@@ -6,6 +6,10 @@
   "dependencies": {
     "aws-sdk": "^2.404.0",
     "serverless-appsync-plugin": "^1.0.9",
-    "serverless-pseudo-parameters": "^2.4.0"
+    "serverless-pseudo-parameters": "^2.4.0",
+    "uuid": "^3.3.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }

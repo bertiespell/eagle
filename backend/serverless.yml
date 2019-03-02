@@ -1,4 +1,4 @@
-service: blog
+service: eagle
 
 plugins:
   - serverless-appsync-plugin
@@ -9,43 +9,43 @@ provider:
   runtime: nodejs8.10
   stage: ${opt:stage}
   region: eu-west-1
+  environment:
+    STAGE: ${opt:stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:putObject"
+      Resource:
+        - arn:aws:s3:::eagle-file-system-${opt:stage}/*
 
 # LAMBDAs
 functions:
   getBlogs:
     handler: handlers/get-blogs.handler
+  
+  create:
+    handler: handlers/create.handler
 
 custom:
   accountId:
     Ref: AWS::AccountId
+
   appSync:
-    name: blog-appsync-api
+    name: eage-${opt:stage}-api
     authenticationType: AMAZON_COGNITO_USER_POOLS
     userPoolConfig:
       awsRegion: eu-west-1
       defaultAction: ALLOW
       userPoolId:  { Ref: CognitoUserPool } 
-    mappingTemplates:
-      - dataSource: getBlogs
-        type: Query #Query, Mutation, Subscription
-        field: getBlogs
-        request: "default-lambda-request.vtl"
-        response: "default-lambda-response.vtl"
-    schema: schema.graphql
-    serviceRole: "AppSyncServiceRole"
-    dataSources:
-      - type: AWS_LAMBDA
-        name: getBlogs
-        description: 'Get List of Blogs'
-        config:
-          lambdaFunctionArn:
-            Fn::Join:
-              - ''
-              - - "arn:aws:lambda:eu-west-1:"
-                - Ref: AWS::AccountId
-                - :function:blog-dev-getBlogs
 
-          serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
+    mappingTemplates: ${file(graph-ql/mapping-templates/mapping-templates.yml)}
+    mappingTemplatesLocation: graph-ql/mapping-templates
+    
+    schema: ./graph-ql/schema/schema.graphql
+    
+    dataSources: ${file(graph-ql/datasources/datasources.yml)}
+
+    serviceRole: "AppSyncServiceRole"
 
 # you can add CloudFormation resource templates here
 resources:
@@ -170,5 +170,8 @@ resources:
                   Resource:
                     - "*"
               
-    
+  EagleFileBucket: 
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketName: eagle-file-system-${opt:stage}
       
